@@ -1,0 +1,1658 @@
+{
+    "name": "Integration Webhooks",
+    "flow": [
+        {
+            "id": 5,
+            "module": "pandadoc:getADocument",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 926907
+            },
+            "mapper": {
+                "document": "fXoBFYHRM2ZpWEEwpJvBYK"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "document": {
+                            "mode": "edit"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "pandadoc"
+                            },
+                            "label": "Celebrations.ai (alex@djing.ca)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:pandadoc",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "document",
+                        "type": "select",
+                        "label": "Document ID",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 7,
+            "module": "json:CreateJSON",
+            "version": 1,
+            "parameters": {
+                "type": 53721,
+                "space": ""
+            },
+            "mapper": {
+                "pricing_tables": [
+                    {
+                        "name": "Pricing Table 1",
+                        "options": {
+                            "currency": "",
+                            "discount": "",
+                            "tax_first": ""
+                        },
+                        "sections": [
+                            {
+                                "rows": [
+                                    {
+                                        "data": {
+                                            "qty": "1",
+                                            "name": "name",
+                                            "price": "1",
+                                            "description": "description"
+                                        },
+                                        "options": {
+                                            "optional": true,
+                                            "qty_editable": true,
+                                            "optional_selected": true
+                                        }
+                                    },
+                                    {
+                                        "data": {
+                                            "qty": "1",
+                                            "name": "Test2",
+                                            "price": "0",
+                                            "description": "desc2"
+                                        },
+                                        "options": {
+                                            "optional": false,
+                                            "qty_editable": false,
+                                            "optional_selected": false
+                                        }
+                                    }
+                                ],
+                                "title": "Test 1",
+                                "default": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "pricing_tables": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "options": {
+                                        "collapsed": true
+                                    },
+                                    "sections": {
+                                        "mode": "chose",
+                                        "items": [
+                                            {
+                                                "rows": {
+                                                    "mode": "chose",
+                                                    "items": [
+                                                        {
+                                                            "options": {
+                                                                "nested": {
+                                                                    "optional": {
+                                                                        "mode": "chose"
+                                                                    },
+                                                                    "qty_editable": {
+                                                                        "mode": "chose"
+                                                                    },
+                                                                    "optional_selected": {
+                                                                        "mode": "chose"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "options": {
+                                                                "nested": {
+                                                                    "optional": {
+                                                                        "mode": "chose"
+                                                                    },
+                                                                    "qty_editable": {
+                                                                        "mode": "chose"
+                                                                    },
+                                                                    "optional_selected": {
+                                                                        "mode": "chose"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "default": {
+                                                    "mode": "chose"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "type": {
+                            "label": "PandaDoc Pricing Tables"
+                        },
+                        "space": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure",
+                        "required": true
+                    },
+                    {
+                        "name": "space",
+                        "type": "select",
+                        "label": "Indentation",
+                        "validate": {
+                            "enum": [
+                                "tab",
+                                "2",
+                                "4"
+                            ]
+                        }
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "pricing_tables",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": null
+                                },
+                                {
+                                    "name": "options",
+                                    "spec": [
+                                        {
+                                            "name": "currency",
+                                            "type": "text",
+                                            "label": null
+                                        },
+                                        {
+                                            "name": "tax_first",
+                                            "type": "text",
+                                            "label": null
+                                        },
+                                        {
+                                            "name": "discount",
+                                            "type": "text",
+                                            "label": null
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": null
+                                },
+                                {
+                                    "name": "sections",
+                                    "spec": {
+                                        "spec": [
+                                            {
+                                                "name": "rows",
+                                                "spec": {
+                                                    "spec": [
+                                                        {
+                                                            "name": "data",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "qty",
+                                                                    "type": "number",
+                                                                    "label": null
+                                                                },
+                                                                {
+                                                                    "name": "name",
+                                                                    "type": "text",
+                                                                    "label": null
+                                                                },
+                                                                {
+                                                                    "name": "price",
+                                                                    "type": "number",
+                                                                    "label": null
+                                                                },
+                                                                {
+                                                                    "name": "description",
+                                                                    "type": "text",
+                                                                    "label": null
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": null
+                                                        },
+                                                        {
+                                                            "name": "options",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "optional",
+                                                                    "type": "boolean",
+                                                                    "label": null
+                                                                },
+                                                                {
+                                                                    "name": "qty_editable",
+                                                                    "type": "boolean",
+                                                                    "label": null
+                                                                },
+                                                                {
+                                                                    "name": "optional_selected",
+                                                                    "type": "boolean",
+                                                                    "label": null
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": null
+                                                        }
+                                                    ],
+                                                    "type": "collection"
+                                                },
+                                                "type": "array",
+                                                "label": null
+                                            },
+                                            {
+                                                "name": "title",
+                                                "type": "text",
+                                                "label": null
+                                            },
+                                            {
+                                                "name": "default",
+                                                "type": "boolean",
+                                                "label": null
+                                            }
+                                        ],
+                                        "type": "collection"
+                                    },
+                                    "type": "array",
+                                    "label": null
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Pricing Tables"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 16,
+            "module": "json:CreateJSON",
+            "version": 1,
+            "parameters": {
+                "type": 149109,
+                "space": ""
+            },
+            "mapper": {
+                "name": "Pricing Table 1",
+                "options": {
+                    "discount": {
+                        "name": "",
+                        "type": "",
+                        "value": ""
+                    }
+                },
+                "sections": [
+                    {
+                        "rows": [
+                            {
+                                "data": {
+                                    "QTY": "1",
+                                    "SKU": "123",
+                                    "Tax": {
+                                        "type": "",
+                                        "value": ""
+                                    },
+                                    "Name": "Test 1",
+                                    "Price": "110",
+                                    "CustomText": "",
+                                    "Description": "desc 1"
+                                },
+                                "options": {
+                                    "optional": false,
+                                    "qty_editable": false,
+                                    "optional_selected": false
+                                },
+                                "custom_fields": {
+                                    "Fluffiness": ""
+                                }
+                            }
+                        ],
+                        "title": "Test 1"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "options": {
+                            "nested": {
+                                "discount": {
+                                    "collapsed": true
+                                }
+                            }
+                        },
+                        "sections": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "rows": {
+                                        "mode": "chose",
+                                        "items": [
+                                            {
+                                                "options": {
+                                                    "nested": {
+                                                        "optional": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "qty_editable": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "optional_selected": {
+                                                            "mode": "chose"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "default": {
+                                        "mode": "chose"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "type": {
+                            "label": "Pandadoc website JSON"
+                        },
+                        "space": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure",
+                        "required": true
+                    },
+                    {
+                        "name": "space",
+                        "type": "select",
+                        "label": "Indentation",
+                        "validate": {
+                            "enum": [
+                                "tab",
+                                "2",
+                                "4"
+                            ]
+                        }
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                    },
+                    {
+                        "name": "options",
+                        "spec": [
+                            {
+                                "name": "discount",
+                                "spec": [
+                                    {
+                                        "name": "type",
+                                        "type": "text",
+                                        "label": null
+                                    },
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": null
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "number",
+                                        "label": null
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": null
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Options"
+                    },
+                    {
+                        "name": "sections",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "title",
+                                    "type": "text",
+                                    "label": null
+                                },
+                                {
+                                    "name": "default",
+                                    "type": "boolean",
+                                    "label": null
+                                },
+                                {
+                                    "name": "rows",
+                                    "spec": {
+                                        "spec": [
+                                            {
+                                                "name": "options",
+                                                "spec": [
+                                                    {
+                                                        "name": "optional",
+                                                        "type": "boolean",
+                                                        "label": null
+                                                    },
+                                                    {
+                                                        "name": "optional_selected",
+                                                        "type": "boolean",
+                                                        "label": null
+                                                    },
+                                                    {
+                                                        "name": "qty_editable",
+                                                        "type": "boolean",
+                                                        "label": null
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": null
+                                            },
+                                            {
+                                                "name": "data",
+                                                "spec": [
+                                                    {
+                                                        "name": "Name",
+                                                        "type": "text",
+                                                        "label": null
+                                                    },
+                                                    {
+                                                        "name": "Description",
+                                                        "type": "text",
+                                                        "label": null
+                                                    },
+                                                    {
+                                                        "name": "Price",
+                                                        "type": "number",
+                                                        "label": null
+                                                    },
+                                                    {
+                                                        "name": "QTY",
+                                                        "type": "number",
+                                                        "label": null
+                                                    },
+                                                    {
+                                                        "name": "SKU",
+                                                        "type": "text",
+                                                        "label": null
+                                                    },
+                                                    {
+                                                        "name": "Tax",
+                                                        "spec": [
+                                                            {
+                                                                "name": "value",
+                                                                "type": "number",
+                                                                "label": null
+                                                            },
+                                                            {
+                                                                "name": "type",
+                                                                "type": "text",
+                                                                "label": null
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": null
+                                                    },
+                                                    {
+                                                        "name": "CustomText",
+                                                        "type": "text",
+                                                        "label": null
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": null
+                                            },
+                                            {
+                                                "name": "custom_fields",
+                                                "spec": [
+                                                    {
+                                                        "name": "Fluffiness",
+                                                        "type": "text",
+                                                        "label": null
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": null
+                                            }
+                                        ],
+                                        "type": "collection"
+                                    },
+                                    "type": "array",
+                                    "label": null
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Sections"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 8,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {
+                "type": ""
+            },
+            "mapper": {
+                "json": "{{16.json}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "Choose a data structure"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 10,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{8.sections}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 11,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{10.rows}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1500,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 12,
+            "module": "builtin:BasicAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 11,
+                "target": "6.pricing_tables.sections.rows"
+            },
+            "filter": {
+                "name": "Filter",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{11.data.Price}}",
+                            "o": "exist"
+                        },
+                        {
+                            "a": "{{11.data.Price}}",
+                            "b": "0",
+                            "o": "number:greater"
+                        }
+                    ]
+                ]
+            },
+            "mapper": {
+                "data": {
+                    "qty": "{{11.data.QTY}}",
+                    "tax": "",
+                    "name": "{{11.data.Name}}",
+                    "price": "{{11.data.Price}}",
+                    "discount": "",
+                    "description": "{{11.data.Description}}"
+                },
+                "options": {
+                    "optional": "{{11.options.optional}}",
+                    "qty_editable": "{{11.options.qty_editable}}",
+                    "optional_selected": "{{11.options.optional_selected}}"
+                },
+                "custom_fields": []
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1800,
+                    "y": 0
+                },
+                "restore": {
+                    "extra": {
+                        "feeder": {
+                            "label": "Iterator [11]"
+                        },
+                        "target": {
+                            "label": "Products: Sections: Section Rows"
+                        }
+                    },
+                    "expect": {
+                        "__IMTTARGET__": {
+                            "nested": {
+                                "options": {
+                                    "nested": {
+                                        "optional": {
+                                            "mode": "edit"
+                                        },
+                                        "qty_editable": {
+                                            "mode": "edit"
+                                        },
+                                        "optional_selected": {
+                                            "mode": "edit"
+                                        }
+                                    }
+                                },
+                                "custom_fields": {
+                                    "mode": "chose"
+                                }
+                            }
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "options",
+                        "spec": [
+                            {
+                                "name": "optional",
+                                "type": "boolean",
+                                "label": "Optional",
+                                "required": true
+                            },
+                            {
+                                "name": "optional_selected",
+                                "type": "boolean",
+                                "label": "Optional selected",
+                                "required": true
+                            },
+                            {
+                                "name": "qty_editable",
+                                "type": "boolean",
+                                "label": "Quantity editable",
+                                "required": true
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Options"
+                    },
+                    {
+                        "name": "data",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "description",
+                                "type": "text",
+                                "label": "Description"
+                            },
+                            {
+                                "name": "price",
+                                "type": "number",
+                                "label": "Price",
+                                "required": true
+                            },
+                            {
+                                "name": "qty",
+                                "type": "number",
+                                "label": "Quantity",
+                                "required": true
+                            },
+                            {
+                                "name": "tax",
+                                "type": "number",
+                                "label": "Tax Percentage",
+                                "validate": {
+                                    "max": 100,
+                                    "min": 0
+                                }
+                            },
+                            {
+                                "name": "discount",
+                                "type": "number",
+                                "label": "Discount Percentage",
+                                "validate": {
+                                    "max": 100,
+                                    "min": 0
+                                }
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Data"
+                    },
+                    {
+                        "name": "custom_fields",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value",
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Custom Fields"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 13,
+            "module": "builtin:BasicAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 10,
+                "target": "6.pricing_tables.sections"
+            },
+            "mapper": {
+                "rows": "{{12.array}}",
+                "title": "{{10.title}}",
+                "default": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2100,
+                    "y": 0
+                },
+                "restore": {
+                    "extra": {
+                        "feeder": {
+                            "label": "Iterator [10]"
+                        },
+                        "target": {
+                            "label": "Products: Sections"
+                        }
+                    },
+                    "expect": {
+                        "__IMTTARGET__": {
+                            "nested": {
+                                "rows": {
+                                    "mode": "edit"
+                                },
+                                "default": {
+                                    "mode": "chose"
+                                }
+                            }
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "Section Name"
+                    },
+                    {
+                        "name": "default",
+                        "type": "boolean",
+                        "label": "Default",
+                        "required": true
+                    },
+                    {
+                        "name": "rows",
+                        "spec": [
+                            {
+                                "name": "options",
+                                "spec": [
+                                    {
+                                        "name": "optional",
+                                        "type": "boolean",
+                                        "label": "Optional",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "optional_selected",
+                                        "type": "boolean",
+                                        "label": "Optional selected",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "qty_editable",
+                                        "type": "boolean",
+                                        "label": "Quantity editable",
+                                        "required": true
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Options"
+                            },
+                            {
+                                "name": "data",
+                                "spec": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "description",
+                                        "type": "text",
+                                        "label": "Description"
+                                    },
+                                    {
+                                        "name": "price",
+                                        "type": "number",
+                                        "label": "Price",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "qty",
+                                        "type": "number",
+                                        "label": "Quantity",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "tax",
+                                        "type": "number",
+                                        "label": "Tax Percentage",
+                                        "validate": {
+                                            "max": 100,
+                                            "min": 0
+                                        }
+                                    },
+                                    {
+                                        "name": "discount",
+                                        "type": "number",
+                                        "label": "Discount Percentage",
+                                        "validate": {
+                                            "max": 100,
+                                            "min": 0
+                                        }
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Data"
+                            },
+                            {
+                                "name": "custom_fields",
+                                "spec": [
+                                    {
+                                        "name": "key",
+                                        "type": "text",
+                                        "label": "Key",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "text",
+                                        "label": "Value",
+                                        "required": true
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "Custom Fields"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Section Rows",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 6,
+            "module": "pandadoc:createADocuments",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 926907
+            },
+            "mapper": {
+                "name": "Tes Document",
+                "send": false,
+                "fields": {},
+                "tokens": {
+                    "Client.Email": "jonocatliff@gmail.com",
+                    "Sender.Email": "jono@djing.ca",
+                    "Client.LastName": "Cole",
+                    "Sender.LastName": "Catliff",
+                    "Client.FirstName": "Jono",
+                    "Sender.FirstName": "Jono"
+                },
+                "template": "RT7u7FctKWevq2eHWgEzH3",
+                "folder_uuid": null,
+                "pricing_tables": [
+                    {
+                        "name": "Pricing Table 1",
+                        "options": {
+                            "currency": "USD",
+                            "discount": "{{8.options.discount.value}}",
+                            "tax_first": "5"
+                        },
+                        "sections": "{{13.array}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2400,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "tags": {
+                            "mode": "chose"
+                        },
+                        "fields": {
+                            "collapsed": true
+                        },
+                        "images": {
+                            "mode": "chose"
+                        },
+                        "tokens": {
+                            "collapsed": true
+                        },
+                        "metadata": {
+                            "mode": "chose"
+                        },
+                        "template": {
+                            "mode": "chose",
+                            "label": "TEST"
+                        },
+                        "recipients": {
+                            "mode": "chose"
+                        },
+                        "folder_uuid": {
+                            "mode": "chose"
+                        },
+                        "pricing_tables": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "name": {
+                                        "mode": "chose",
+                                        "label": "Pricing Table 1"
+                                    },
+                                    "sections": {
+                                        "mode": "edit"
+                                    }
+                                }
+                            ]
+                        },
+                        "content_placeholders": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "pandadoc"
+                            },
+                            "label": "Celebrations.ai (alex@djing.ca)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:pandadoc",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Document Name",
+                        "required": true
+                    },
+                    {
+                        "name": "template",
+                        "type": "select",
+                        "label": "Template ID",
+                        "required": true
+                    },
+                    {
+                        "name": "send",
+                        "type": "boolean",
+                        "label": "Send a document",
+                        "required": true
+                    },
+                    {
+                        "name": "folder_uuid",
+                        "type": "folder",
+                        "label": "Folder"
+                    },
+                    {
+                        "name": "tags",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Tag"
+                        },
+                        "type": "array",
+                        "label": "Tags"
+                    },
+                    {
+                        "name": "images",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Image Block Name",
+                                "required": true
+                            },
+                            {
+                                "name": "urls",
+                                "type": "url",
+                                "label": "Image URL",
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Images"
+                    },
+                    {
+                        "name": "metadata",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value",
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Document Metadata"
+                    },
+                    {
+                        "name": "content_placeholders",
+                        "spec": [
+                            {
+                                "name": "block_id",
+                                "type": "select",
+                                "label": "Block ID",
+                                "dynamic": true,
+                                "options": [],
+                                "required": true
+                            },
+                            {
+                                "name": "content_library_items",
+                                "spec": [
+                                    {
+                                        "name": "id",
+                                        "type": "select",
+                                        "label": "Content Library Item ID",
+                                        "dynamic": true,
+                                        "options": {
+                                            "store": []
+                                        },
+                                        "required": true
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "Content Library Items",
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Content Placeholders"
+                    },
+                    {
+                        "name": "tokens",
+                        "spec": [
+                            {
+                                "name": "Client.Email",
+                                "type": "email",
+                                "label": "Role: Client Email",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Sender.Email",
+                                "type": "email",
+                                "label": "Role: Sender Email",
+                                "metadata": {
+                                    "role": "Sender"
+                                }
+                            },
+                            {
+                                "name": "",
+                                "type": "text",
+                                "label": "Token: "
+                            },
+                            {
+                                "name": "Client.City",
+                                "type": "text",
+                                "label": "Role: Client  City ",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Client.Company",
+                                "type": "text",
+                                "label": "Role: Client  Company ",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Client.Country",
+                                "type": "text",
+                                "label": "Role: Client  Country ",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Client.FirstName",
+                                "type": "text",
+                                "label": "Role: Client  First Name ",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Client.LastName",
+                                "type": "text",
+                                "label": "Role: Client  Last Name ",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Client.PostalCode",
+                                "type": "text",
+                                "label": "Role: Client  Postal Code ",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Client.State",
+                                "type": "text",
+                                "label": "Role: Client  State ",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Client.StreetAddress",
+                                "type": "text",
+                                "label": "Role: Client  Street Address ",
+                                "metadata": {
+                                    "role": "Client"
+                                }
+                            },
+                            {
+                                "name": "Sender.City",
+                                "type": "text",
+                                "label": "Role: Sender  City ",
+                                "metadata": {
+                                    "role": "Sender"
+                                }
+                            },
+                            {
+                                "name": "Sender.Company",
+                                "type": "text",
+                                "label": "Role: Sender  Company ",
+                                "metadata": {
+                                    "role": "Sender"
+                                }
+                            },
+                            {
+                                "name": "Sender.FirstName",
+                                "type": "text",
+                                "label": "Role: Sender  First Name ",
+                                "metadata": {
+                                    "role": "Sender"
+                                }
+                            },
+                            {
+                                "name": "Sender.LastName",
+                                "type": "text",
+                                "label": "Role: Sender  Last Name ",
+                                "metadata": {
+                                    "role": "Sender"
+                                }
+                            },
+                            {
+                                "name": "Sender.PostalCode",
+                                "type": "text",
+                                "label": "Role: Sender  Postal Code ",
+                                "metadata": {
+                                    "role": "Sender"
+                                }
+                            },
+                            {
+                                "name": "Sender.State",
+                                "type": "text",
+                                "label": "Role: Sender  State ",
+                                "metadata": {
+                                    "role": "Sender"
+                                }
+                            },
+                            {
+                                "name": "Sender.StreetAddress",
+                                "type": "text",
+                                "label": "Role: Sender  Street Address ",
+                                "metadata": {
+                                    "role": "Sender"
+                                }
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Tokens"
+                    },
+                    {
+                        "name": "fields",
+                        "spec": [
+                            {
+                                "name": "MM / DD / YYYY",
+                                "type": "text",
+                                "label": "Sender MM / DD / YYYY"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Fields"
+                    },
+                    {
+                        "name": "recipients",
+                        "spec": [
+                            {
+                                "name": "email",
+                                "type": "email",
+                                "label": "Email",
+                                "required": true
+                            },
+                            {
+                                "name": "first_name",
+                                "type": "text",
+                                "label": "First name"
+                            },
+                            {
+                                "name": "last_name",
+                                "type": "text",
+                                "label": "Last name"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "CC Recipients"
+                    },
+                    {
+                        "name": "pricing_tables",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "select",
+                                "label": "Table Name",
+                                "options": [
+                                    {
+                                        "label": "Pricing Table 1",
+                                        "value": "Pricing Table 1"
+                                    }
+                                ],
+                                "required": true
+                            },
+                            {
+                                "name": "options",
+                                "spec": [
+                                    {
+                                        "name": "currency",
+                                        "type": "text",
+                                        "label": "Currency"
+                                    },
+                                    {
+                                        "name": "discount",
+                                        "type": "number",
+                                        "label": "Global Discount Percentage",
+                                        "validate": {
+                                            "max": 100,
+                                            "min": 0
+                                        }
+                                    },
+                                    {
+                                        "name": "tax_first",
+                                        "type": "number",
+                                        "label": "Global Tax Percentage",
+                                        "validate": {
+                                            "max": 100,
+                                            "min": 0
+                                        }
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Options"
+                            },
+                            {
+                                "name": "sections",
+                                "spec": [
+                                    {
+                                        "name": "title",
+                                        "type": "text",
+                                        "label": "Section Name"
+                                    },
+                                    {
+                                        "name": "default",
+                                        "type": "boolean",
+                                        "label": "Default",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "rows",
+                                        "spec": [
+                                            {
+                                                "name": "options",
+                                                "spec": [
+                                                    {
+                                                        "name": "optional",
+                                                        "type": "boolean",
+                                                        "label": "Optional",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "optional_selected",
+                                                        "type": "boolean",
+                                                        "label": "Optional selected",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "qty_editable",
+                                                        "type": "boolean",
+                                                        "label": "Quantity editable",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Options"
+                                            },
+                                            {
+                                                "name": "data",
+                                                "spec": [
+                                                    {
+                                                        "name": "name",
+                                                        "type": "text",
+                                                        "label": "Name",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "description",
+                                                        "type": "text",
+                                                        "label": "Description"
+                                                    },
+                                                    {
+                                                        "name": "price",
+                                                        "type": "number",
+                                                        "label": "Price",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "qty",
+                                                        "type": "number",
+                                                        "label": "Quantity",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "tax",
+                                                        "type": "number",
+                                                        "label": "Tax Percentage",
+                                                        "validate": {
+                                                            "max": 100,
+                                                            "min": 0
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "discount",
+                                                        "type": "number",
+                                                        "label": "Discount Percentage",
+                                                        "validate": {
+                                                            "max": 100,
+                                                            "min": 0
+                                                        }
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Data"
+                                            },
+                                            {
+                                                "name": "custom_fields",
+                                                "spec": [
+                                                    {
+                                                        "name": "key",
+                                                        "type": "text",
+                                                        "label": "Key",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "value",
+                                                        "type": "text",
+                                                        "label": "Value",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Custom Fields"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Section Rows",
+                                        "required": true
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "Sections",
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Products"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": [
+                [
+                    {
+                        "id": 1,
+                        "module": "gateway:CustomWebHook",
+                        "version": 1,
+                        "parameters": {
+                            "hook": 433495,
+                            "maxResults": 1
+                        },
+                        "mapper": {},
+                        "metadata": {
+                            "designer": {
+                                "x": 0,
+                                "y": 306,
+                                "messages": [
+                                    {
+                                        "category": "link",
+                                        "severity": "warning",
+                                        "message": "A trigger must be the first module in a scenario."
+                                    }
+                                ]
+                            },
+                            "restore": {
+                                "parameters": {
+                                    "hook": {
+                                        "data": {
+                                            "editable": "true"
+                                        },
+                                        "label": "My gateway-webhook webhook"
+                                    }
+                                }
+                            },
+                            "parameters": [
+                                {
+                                    "name": "hook",
+                                    "type": "hook:gateway-webhook",
+                                    "label": "Webhook",
+                                    "required": true
+                                },
+                                {
+                                    "name": "maxResults",
+                                    "type": "number",
+                                    "label": "Maximum number of results"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            ]
+        },
+        "zone": "us1.make.com"
+    }
+}
